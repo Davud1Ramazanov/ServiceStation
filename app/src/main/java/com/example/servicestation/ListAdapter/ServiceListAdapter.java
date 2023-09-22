@@ -1,4 +1,4 @@
-package com.example.servicestation;// ServiceListAdapter.java
+package com.example.servicestation.ListAdapter;// ServiceListAdapter.java
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.servicestation.Service;
+import com.example.servicestation.R;
+import com.example.servicestation.Models.Service;
 
 import java.util.List;
 

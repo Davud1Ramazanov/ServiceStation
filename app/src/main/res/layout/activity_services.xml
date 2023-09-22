@@ -60,6 +60,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_button"
+                android:onClick="clickOrderWindow"
                 android:text="Order" />
 
             <Button
@@ -70,6 +71,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_button"
+                android:onClick="clickServiceWindow"
                 android:text="Servic" />
 
             <Button
@@ -80,6 +82,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_button"
+                android:onClick="clickAreaWindow"
                 android:text="Area" />
         </LinearLayout>
 

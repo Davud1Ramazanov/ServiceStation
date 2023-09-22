@@ -5,51 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/online_event_registration_800x400"
-    tools:context=".MainMenu">
+    tools:context=".AreaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/serviceText"
+            android:id="@+id/areaText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Service auto"
+            android:text="Area"
             android:textColor="@color/white"
             android:textSize="35dp"
             android:textStyle="bold"
             android:translationY="30dp" />
 
-        <ImageView
-            android:id="@+id/imageView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="172dp"
-            android:translationY="70dp"
-            app:srcCompat="@drawable/_87662cbe9066757179015546045bfb0_quality_75xresize_crop_1xallow_enlarge_0xw_740xh_400" />
+            android:layout_height="505dp"
+            android:orientation="vertical"
+            android:translationY="40dp">
 
-        <TextView
-            android:id="@+id/aboutText"
-            android:layout_width="match_parent"
-            android:layout_height="293dp"
-            android:gravity="center"
-            android:text="These stations employ skilled mechanics and technicians who provide quality service to their clients. Whether it’s a routine check-up, a major repair, or a specific issue with a vehicle, the STOs in Dnipro are equipped to handle it."
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:translationY="80dp" />
+            <ListView
+                android:id="@+id/listArea"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="71dp"
+            android:layout_height="70dp"
             android:orientation="horizontal"
-            android:translationY="180dp">
+            android:translationY="140dp">
 
             <Button
                 android:id="@+id/button"
@@ -59,6 +49,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_button"
+                android:onClick="clickMainMenuWindow"
                 android:text="Menu" />
 
             <Button
@@ -94,6 +85,12 @@
                 android:onClick="clickAreaWindow"
                 android:text="Area" />
         </LinearLayout>
-    </LinearLayout>
 
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create info car" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

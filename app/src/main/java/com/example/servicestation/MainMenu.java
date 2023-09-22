@@ -18,4 +18,14 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(this, ServicesActivity.class);
         startActivity(intent);
     }
+
+    public void clickOrderWindow(View view) {
+        Intent intent = new Intent(this, OrdersActivity.class);
+        startActivity(intent);
+    }
+
+    public void clickAreaWindow(View view) {
+        Intent intent = new Intent(this, AreaActivity.class);
+        startActivity(intent);
+    }
 }

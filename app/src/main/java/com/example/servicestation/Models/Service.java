@@ -1,4 +1,4 @@
-package com.example.servicestation;
+package com.example.servicestation.Models;
 
 public class Service {
     private int categoryId;

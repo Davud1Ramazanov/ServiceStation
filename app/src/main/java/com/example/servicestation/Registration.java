@@ -93,7 +93,7 @@ public class Registration extends AppCompatActivity {
     }
 
     public void MenuWindow() {
-        Intent intent = new Intent(this, MainMenu.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 }

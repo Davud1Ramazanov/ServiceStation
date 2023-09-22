@@ -2,16 +2,16 @@ package com.example.servicestation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ListView;
 
 import com.example.servicestation.ApiService.ApiService;
-import com.example.servicestation.ListAdapter.ServiceListAdapter;
-import com.example.servicestation.Models.Service;
+import com.example.servicestation.ListAdapter.AreaListAdapter;
+import com.example.servicestation.Models.Area;
+
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -21,18 +21,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import java.util.List;
 
-public class ServicesActivity extends AppCompatActivity {
+public class AreaActivity extends AppCompatActivity {
 
     private ListView listView;
-    private static final String TAG = "ServicesActivity";
+    private static final String TAG = "AreaActivity";
     private static final String PREF_JWT_TOKEN = "jwt_token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_services);
+        setContentView(R.layout.activity_area);
 
         listView = findViewById(R.id.listService);
 
@@ -40,8 +39,7 @@ public class ServicesActivity extends AppCompatActivity {
         String jwtToken = sharedPreferences.getString(PREF_JWT_TOKEN, "");
 
         if (jwtToken.isEmpty()) {
-            // Обработка случая, когда токен отсутствует
-            // Можно перенаправить пользователя на страницу авторизации или выполнить другие действия
+            // Handle the case where JWT token is empty or missing.
         } else {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                 @Override
@@ -54,7 +52,6 @@ public class ServicesActivity extends AppCompatActivity {
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     .addInterceptor(loggingInterceptor)
                     .addInterceptor(chain -> {
-                        // Добавляем JWT Bearer Token к заголовкам запроса
                         Request originalRequest = chain.request();
                         Request newRequest = originalRequest.newBuilder()
                                 .header("Authorization", "Bearer " + jwtToken)
@@ -71,16 +68,16 @@ public class ServicesActivity extends AppCompatActivity {
 
             ApiService apiService = retrofit.create(ApiService.class);
 
-            Call<List<Service>> call = apiService.getServices();
+            Call<List<Area>> call = apiService.getCars();
 
-            call.enqueue(new Callback<List<Service>>() {
+            call.enqueue(new Callback<List<Area>>() {
                 @Override
-                public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
+                public void onResponse(Call<List<Area>> call, Response<List<Area>> response) {
                     if (response.isSuccessful()) {
-                        List<Service> serviceList = response.body();
-                        if (serviceList != null) {
-                            ServiceListAdapter adapter = new ServiceListAdapter(ServicesActivity.this, serviceList);
-                            listView.setAdapter(adapter);
+                        List<Area> areaList = response.body();
+                        if (areaList != null) {
+                            AreaListAdapter areaListAdapter = new AreaListAdapter(AreaActivity.this, areaList);
+                            listView.setAdapter(areaListAdapter);
                         }
                     } else {
                         int statusCode = response.code();
@@ -89,31 +86,11 @@ public class ServicesActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<Service>> call, Throwable t) {
+                public void onFailure(Call<List<Area>> call, Throwable t) {
                     t.printStackTrace();
                     Log.e(TAG, "Error executing the request: " + t.getMessage());
                 }
             });
         }
-    }
-
-    public void clickMainMenuWindow(View view) {
-        Intent intent = new Intent(this, MainMenu.class);
-        startActivity(intent);
-    }
-
-    public void clickServiceWindow(View view) {
-        Intent intent = new Intent(this, ServicesActivity.class);
-        startActivity(intent);
-    }
-
-    public void clickOrderWindow(View view) {
-        Intent intent = new Intent(this, OrdersActivity.class);
-        startActivity(intent);
-    }
-
-    public void clickAreaWindow(View view) {
-        Intent intent = new Intent(this, AreaActivity.class);
-        startActivity(intent);
     }
 }

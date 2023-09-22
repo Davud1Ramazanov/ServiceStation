@@ -15,6 +15,12 @@
         android:theme="@style/Theme.ServiceStation"
         tools:targetApi="31">
         <activity
+            android:name=".CreateAreaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AreaActivity"
+            android:exported="false" />
+        <activity
             android:name=".OrdersActivity"
             android:exported="false" />
         <activity
